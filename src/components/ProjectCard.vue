@@ -27,14 +27,13 @@ export default {
 						<!-- Loaded image -->
 						<div class="col-3" v-if="project.image">
 							<img
-								:src="`http://localhost:8000/storage/${project.image}`"
+								:src="`http://localhost:8000/storage/app/public/${project.image}`"
 								:alt="project.title"
 								class="img-fluid"
 								style="max-width: 80%; height: auto" />
 						</div>
 
-						<div class="col-{{ project.image ? '9' : '12' }}"></div>
-						<div class="col-12">
+						<div class="col-{{ project.image ? '9' : '12' }}">
 							<h2 class="card-title">
 								Project
 								<span class="fst-italic text-uppercase">
