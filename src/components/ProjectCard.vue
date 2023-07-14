@@ -26,9 +26,8 @@ export default {
 					<div class="row border-start ps-3">
 						<!-- Loaded image -->
 						<div class="col-3" v-if="project.image">
-							<pre>{{ project.image }}</pre>
 							<img
-								:src="`http://localhost:8000/storage/app/public/${project.image}`"
+								:src="`http://localhost:8000/storage/${project.image}`"
 								:alt="project.title"
 								class="img-fluid"
 								style="max-width: 80%; height: auto" />
