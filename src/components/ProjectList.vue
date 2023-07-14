@@ -9,7 +9,7 @@ export default {
 			arrProjects: [],
 			activePage: 1,
 			nPages: 0,
-			selectedProject: null,
+			// selectedProject: null,
 		};
 	},
 
@@ -18,6 +18,10 @@ export default {
 	},
 
 	methods: {
+		selectProject(project) {
+			this.$emit("project-selected", project);
+		},
+
 		changePage(page) {
 			this.activePage = page;
 			this.getProjects();
@@ -34,10 +38,6 @@ export default {
 					this.arrProjects = response.data.data;
 					this.nPages = response.data.last_page;
 				});
-		},
-
-		selectProject(project) {
-			this.selectedProject = project;
 		},
 	},
 
@@ -71,11 +71,6 @@ export default {
 		:n-pages="nPages"
 		:active-page="activePage"
 		@page-changed="changePage" />
-
-	<ProjectCard
-		class="card-container"
-		v-if="selectedProject"
-		:project="selectedProject" />
 </template>
 
 <style lang="scss" scoped>

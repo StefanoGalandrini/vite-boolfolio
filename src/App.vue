@@ -7,13 +7,25 @@ export default {
 		ProjectList,
 		ProjectCard,
 	},
+
+	data() {
+		return {
+			selectedProject: null,
+		};
+	},
+
+	methods: {
+		handleProjectSelected(project) {
+			this.selectedProject = project;
+		},
+	},
 };
 </script>
 
 <template>
 	<h1>Boolpress</h1>
-	<ProjectList />
-	<ProjectCard />
+	<ProjectList @project-selected="handleProjectSelected" />
+	<ProjectCard v-if="selectedProject" :project="selectedProject" />
 </template>
 
 <style lang="scss">
