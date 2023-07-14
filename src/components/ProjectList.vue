@@ -1,5 +1,6 @@
 <script>
 import axios from "axios";
+import Paginator from "./Paginator.vue";
 
 export default {
 	data() {
@@ -8,7 +9,12 @@ export default {
 			arrProjects: [],
 			activePage: 1,
 			nPages: 0,
+			selectedProject: null,
 		};
+	},
+
+	components: {
+		Paginator,
 	},
 
 	methods: {
@@ -29,9 +35,14 @@ export default {
 					this.nPages = response.data.last_page;
 				});
 		},
+
+		selectProject(project) {
+			this.selectedProject = project;
+		},
 	},
 
 	created() {
+		// this.getProjects();
 		axios
 			.get(this.urlServer + "projects", {
 				params: {
@@ -52,40 +63,34 @@ export default {
 	<ul>
 		<li v-for="project in arrProjects" :key="project.id">
 			{{ project.title }}
+			<button class="show" @click="selectProject(project)">SHOW</button>
 		</li>
 	</ul>
 
-	<nav>
-		<ul class="pagination">
-			<li class="page-item">
-				<a class="page-link" href="#" aria-label="Previous">
-					<span aria-hidden="true">&laquo;</span>
-					<!-- <span class="sr-only">Previous</span> -->
-				</a>
-			</li>
+	<Paginator
+		:n-pages="nPages"
+		:active-page="activePage"
+		@page-changed="changePage" />
 
-			<li
-				v-for="page in nPages"
-				:key="page"
-				class="page-item paginator"
-				:class="{active: page === activePage}">
-				<span class="page-link" href="#" @click="changePage(page)">
-					{{ page }}
-				</span>
-			</li>
-
-			<li class="page-item">
-				<a class="page-link" href="#" aria-label="Next">
-					<span aria-hidden="true">&raquo;</span>
-					<!-- <span class="sr-only">Next</span> -->
-				</a>
-			</li>
-		</ul>
-	</nav>
+	<ProjectCard
+		class="card-container"
+		v-if="selectedProject"
+		:project="selectedProject" />
 </template>
 
 <style lang="scss" scoped>
-.paginator {
-	cursor: pointer;
+button.show {
+	border: none;
+	background-color: rgb(34, 0, 17);
+	color: rgb(180, 180, 180);
+	padding: 0.25rem 1rem;
+	margin: 0.5rem 0;
+	border-radius: 50rem;
+	transition: all 250ms;
+
+	&:hover {
+		background-color: rgb(80, 32, 59);
+		color: white;
+	}
 }
 </style>
