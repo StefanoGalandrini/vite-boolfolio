@@ -23,7 +23,7 @@ export default {
 </script>
 
 <template>
-	<h1>Boolpress</h1>
+	<h1 class="fw-bold text-center text-uppercase">Boolpress</h1>
 	<!-- <router-view></router-view> -->
 	<AppList @project-selected="handleProjectSelected" />
 	<AppCard v-if="selectedProject" :project="selectedProject" />
