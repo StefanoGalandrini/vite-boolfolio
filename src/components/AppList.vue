@@ -1,20 +1,22 @@
 <script>
 import axios from "axios";
-import Paginator from "./Paginator.vue";
+import AppPaginator from "./AppPaginator.vue";
+import {store} from "../store";
 
 export default {
+	emits: ["project-selected"],
+
 	data() {
 		return {
-			urlServer: "http://localhost:8000/api/",
 			arrProjects: [],
 			activePage: 1,
 			nPages: 0,
-			// selectedProject: null,
+			store,
 		};
 	},
 
 	components: {
-		Paginator,
+		AppPaginator,
 	},
 
 	methods: {
@@ -29,7 +31,7 @@ export default {
 
 		getProjects() {
 			axios
-				.get(this.urlServer + "projects", {
+				.get(this.store.urlServer + "projects", {
 					params: {
 						page: this.activePage,
 					},
@@ -39,20 +41,24 @@ export default {
 					this.nPages = response.data.last_page;
 				});
 		},
+
+		toPrevPage() {
+			this.activePage != 1 ? this.activePage-- : null;
+		},
+
+		toNextPage() {
+			this.activePage != this.nPages ? this.activePage++ : null;
+		},
+	},
+
+	watch: {
+		currentPage() {
+			this.getProjects();
+		},
 	},
 
 	created() {
-		// this.getProjects();
-		axios
-			.get(this.urlServer + "projects", {
-				params: {
-					page: this.activePage,
-				},
-			})
-			.then((response) => {
-				this.arrProjects = response.data.data;
-				this.nPages = response.data.last_page;
-			});
+		this.getProjects();
 	},
 };
 </script>
@@ -63,11 +69,12 @@ export default {
 	<ul>
 		<li v-for="project in arrProjects" :key="project.id">
 			{{ project.title }}
+			<!-- <router-link class="show" :to={ name: projects.show }></router-link> -->
 			<button class="show" @click="selectProject(project)">SHOW</button>
 		</li>
 	</ul>
 
-	<Paginator
+	<AppPaginator
 		:n-pages="nPages"
 		:active-page="activePage"
 		@page-changed="changePage" />
