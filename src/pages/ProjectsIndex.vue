@@ -9,7 +9,7 @@ export default {
 </script>
 
 <template>
-	<h2>Projects List</h2>
+	<h2 class="text-center fst-italic fw-bold">Projects List</h2>
 
 	<AppList />
 </template>
