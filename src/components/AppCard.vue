@@ -35,7 +35,11 @@ export default {
 				<img :src="userImageUrl(project.image)" alt="" class="mx-2 w-50 my-3" />
 				<p class="card-text description mx-2">{{ project.description }}</p>
 			</div>
-			<a href="#" class="btn color-button w-75 my-3">Show Project</a>
+			<router-link
+				:to="{name: 'show', params: {slug: project.slug}}"
+				class="btn color-button w-75 my-3">
+				Show Details
+			</router-link>
 		</div>
 	</div>
 </template>
