@@ -25,7 +25,7 @@ export default {
 <template>
 	<AppNav />
 
-	<div class="container">
+	<div class="container-fluid">
 		<h1 class="fw-bold text-center text-uppercase">Boolpress</h1>
 		<router-view></router-view>
 	</div>
