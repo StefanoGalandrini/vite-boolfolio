@@ -33,7 +33,7 @@ export default {
 
 		getProjects() {
 			axios
-				.get(this.store.urlServer + "projects", {
+				.get(this.store.fixedUrl + "api/projects", {
 					params: {
 						page: this.activePage,
 					},

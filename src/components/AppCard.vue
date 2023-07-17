@@ -1,4 +1,6 @@
 <script>
+import {store} from "../store";
+
 export default {
 	props: {
 		project: {
@@ -9,13 +11,15 @@ export default {
 
 	data() {
 		return {
-			fixedUrl: "http://localhost:8000/storage/",
+			store,
 		};
 	},
 
 	methods: {
 		userImageUrl(image) {
-			return image ? this.fixedUrl + image : this.fixedUrl + "default.jpg";
+			return image
+				? this.store.fixedUrl + "storage/" + image
+				: this.store.fixedUrl + "storage/" + "default.jpg";
 		},
 	},
 };
