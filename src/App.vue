@@ -1,11 +1,11 @@
 <script>
-import ProjectList from "./components/ProjectList.vue";
-import ProjectCard from "./components/ProjectCard.vue";
+import AppList from "./components/AppList.vue";
+import AppCard from "./components/AppCard.vue";
 
 export default {
 	components: {
-		ProjectList,
-		ProjectCard,
+		AppList,
+		AppCard,
 	},
 
 	data() {
@@ -24,8 +24,9 @@ export default {
 
 <template>
 	<h1>Boolpress</h1>
-	<ProjectList @project-selected="handleProjectSelected" />
-	<ProjectCard v-if="selectedProject" :project="selectedProject" />
+	<!-- <router-view></router-view> -->
+	<AppList @project-selected="handleProjectSelected" />
+	<AppCard v-if="selectedProject" :project="selectedProject" />
 </template>
 
 <style lang="scss">
