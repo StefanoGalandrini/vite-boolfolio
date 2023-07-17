@@ -5,8 +5,6 @@ import AppCard from "./AppCard.vue";
 import {store} from "../store";
 
 export default {
-	emits: ["project-selected"],
-
 	components: {
 		AppPaginator,
 		AppCard,
@@ -22,10 +20,6 @@ export default {
 	},
 
 	methods: {
-		selectProject(project) {
-			this.$emit("project-selected", project);
-		},
-
 		changePage(page) {
 			this.activePage = page;
 			this.getProjects();

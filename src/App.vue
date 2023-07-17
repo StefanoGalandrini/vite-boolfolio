@@ -25,8 +25,7 @@ export default {
 <template>
 	<h1 class="fw-bold text-center text-uppercase">Boolpress</h1>
 	<!-- <router-view></router-view> -->
-	<AppList @project-selected="handleProjectSelected" />
-	<AppCard v-if="selectedProject" :project="selectedProject" />
+	<AppList />
 </template>
 
 <style lang="scss">
