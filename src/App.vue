@@ -1,11 +1,11 @@
 <script>
-import AppList from "./components/AppList.vue";
-import AppCard from "./components/AppCard.vue";
+import AppFooter from "./components/AppFooter.vue";
+import AppNav from "./components/AppNav.vue";
 
 export default {
 	components: {
-		AppList,
-		AppCard,
+		AppNav,
+		AppFooter,
 	},
 
 	data() {
@@ -23,9 +23,14 @@ export default {
 </script>
 
 <template>
-	<h1 class="fw-bold text-center text-uppercase">Boolpress</h1>
-	<!-- <router-view></router-view> -->
-	<AppList />
+	<AppNav />
+
+	<div class="container">
+		<h1 class="fw-bold text-center text-uppercase">Boolpress</h1>
+		<router-view></router-view>
+	</div>
+
+	<AppFooter />
 </template>
 
 <style lang="scss">

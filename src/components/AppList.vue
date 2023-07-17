@@ -60,8 +60,6 @@ export default {
 </script>
 
 <template>
-	<h3 class="text-center fw-bold fst-italic">Project List</h3>
-
 	<div
 		class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-xl-6 g-4 my-5 px-5">
 		<div class="col" v-for="project in arrProjects" :key="project.id">

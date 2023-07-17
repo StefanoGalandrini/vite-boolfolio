@@ -1,11 +1,17 @@
 <script>
-// import ProjectList from "../components/ProjectList.vue";
-// export default {components: {ProjectList}};
+import AppList from "../components/AppList.vue";
+
+export default {
+	components: {
+		AppList,
+	},
+};
 </script>
 
 <template>
-	<h2>Lista dei projects</h2>
-	<!-- <ProjectList /> -->
+	<h2>Projects List</h2>
+
+	<AppList />
 </template>
 
-<style></style>
+<style lang="scss" scoped></style>
