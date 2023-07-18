@@ -6,4 +6,4 @@ export default {};
 	<div class="container-fluid py-5 bg-dark text-light text-center">FOOTER</div>
 </template>
 
-<style></style>
+<style lang="scss" scoped></style>

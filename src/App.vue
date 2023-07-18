@@ -25,8 +25,7 @@ export default {
 <template>
 	<AppNav />
 
-	<div class="container-fluid">
-		<h1 class="fw-bold text-center text-uppercase">Boolpress</h1>
+	<div class="container-fluid main-app overflow-auto">
 		<router-view></router-view>
 	</div>
 
@@ -35,4 +34,9 @@ export default {
 
 <style lang="scss">
 @import "bootstrap/scss/bootstrap";
+
+.main-app {
+	height: 100%;
+	overflow: scroll;
+}
 </style>

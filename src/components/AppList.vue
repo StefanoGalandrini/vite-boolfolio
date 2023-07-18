@@ -30,11 +30,12 @@ export default {
 				.get(this.store.fixedUrl + "api/projects", {
 					params: {
 						page: this.activePage,
+						// q: new URLSearchParams(window.location.search).get("q"),
 					},
 				})
 				.then((response) => {
-					this.arrProjects = response.data.data;
-					this.nPages = response.data.last_page;
+					this.arrProjects = response.data.results.data;
+					this.nPages = response.data.results.last_page;
 				});
 		},
 
@@ -60,6 +61,8 @@ export default {
 </script>
 
 <template>
+	<h1 class="fw-bold text-center text-uppercase">Boolpress</h1>
+
 	<div
 		class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-xl-6 g-4 my-5 px-5">
 		<div class="col" v-for="project in arrProjects" :key="project.id">
