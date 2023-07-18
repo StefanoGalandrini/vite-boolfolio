@@ -24,10 +24,7 @@ export default {
 			<router-link
 				class="image-link"
 				:to="{name: 'show', params: {slug: project.slug}}">
-				<img
-					class="round-image"
-					:src="project.url_image"
-					:alt="project.title" />
+				<img class="image" :src="project.url_image" :alt="project.title" />
 			</router-link>
 		</div>
 	</div>
@@ -35,30 +32,28 @@ export default {
 
 <style lang="scss" scoped>
 .grid-container {
-	width: 80%;
-	margin-inline: auto;
+	height: 80vh;
+	width: 75%;
+	margin: 0 auto;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
-	// height: 80vh;
 }
 
 .grid-item {
-	width: 23%;
-	height: auto;
+	width: 24%;
+	height: calc(80vh / 3);
 }
 
 .image-link {
 	display: block;
 	width: 100%;
-	height: 100%;
 	border: 1px solid grey;
 }
 
-.round-image {
+.image {
 	width: 100%;
-	height: auto;
 	object-fit: cover;
 }
 </style>
