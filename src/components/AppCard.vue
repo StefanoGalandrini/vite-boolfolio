@@ -16,11 +16,11 @@ export default {
 	},
 
 	methods: {
-		userImageUrl(image) {
-			return image
-				? this.store.fixedUrl + "storage/" + image
-				: this.store.fixedUrl + "storage/" + "default.jpg";
-		},
+		// userImageUrl(image) {
+		// 	return image
+		// 		? this.store.fixedUrl + "storage/" + image
+		// 		: this.store.fixedUrl + "storage/" + "default.jpg";
+		// },
 	},
 };
 </script>
@@ -32,7 +32,10 @@ export default {
 			<h5 class="card-title text-center fw-bold">{{ project.title }}</h5>
 			<div
 				class="d-flex flex-column justify-content-start align-items-center flex-grow-1">
-				<img :src="userImageUrl(project.image)" alt="" class="mx-2 w-50 my-3" />
+				<img
+					:src="store.userImageUrl(project.image)"
+					alt=""
+					class="mx-2 w-50 my-3" />
 				<p class="card-text description mx-2">{{ project.description }}</p>
 			</div>
 			<router-link
