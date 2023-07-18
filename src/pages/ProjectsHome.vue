@@ -19,6 +19,8 @@ export default {
 </script>
 
 <template>
+	<h1 class="fw-bold text-center text-uppercase">Boolpress</h1>
+
 	<div class="grid-container">
 		<div class="grid-item" v-for="project in arrProjects" :key="project.id">
 			<router-link
@@ -32,8 +34,8 @@ export default {
 
 <style lang="scss" scoped>
 .grid-container {
-	height: 80vh;
-	width: 75%;
+	height: 70vh;
+	width: 70%;
 	margin: 0 auto;
 	display: flex;
 	flex-wrap: wrap;
@@ -43,7 +45,7 @@ export default {
 
 .grid-item {
 	width: 24%;
-	height: calc(80vh / 3);
+	height: calc(70vh / 3);
 }
 
 .image-link {

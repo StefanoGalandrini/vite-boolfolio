@@ -14,14 +14,6 @@ export default {
 			store,
 		};
 	},
-
-	methods: {
-		// userImageUrl(image) {
-		// 	return image
-		// 		? this.store.fixedUrl + "storage/" + image
-		// 		: this.store.fixedUrl + "storage/" + "default.jpg";
-		// },
-	},
 };
 </script>
 
@@ -35,7 +27,7 @@ export default {
 				<img
 					:src="store.userImageUrl(project.image)"
 					alt=""
-					class="mx-2 w-50 my-3" />
+					class="mx-2 w-50 my-2" />
 				<p class="card-text description mx-2">{{ project.description }}</p>
 			</div>
 			<router-link

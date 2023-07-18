@@ -49,7 +49,7 @@ export default {
 	},
 
 	watch: {
-		"$route.query.q": function (newVal, oldVal) {
+		"$route.query.q": function () {
 			this.getProjects();
 		},
 
@@ -65,8 +65,6 @@ export default {
 </script>
 
 <template>
-	<h1 class="fw-bold text-center text-uppercase">Boolpress</h1>
-
 	<div
 		class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-xl-6 g-4 my-3 px-5">
 		<div class="col" v-for="project in arrProjects" :key="project.id">
