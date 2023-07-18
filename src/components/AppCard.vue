@@ -40,7 +40,7 @@ export default {
 			</div>
 			<router-link
 				:to="{name: 'show', params: {slug: project.slug}}"
-				class="btn color-button w-75 my-3">
+				class="btn color-button w-75 my-2">
 				Show Details
 			</router-link>
 		</div>

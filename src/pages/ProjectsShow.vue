@@ -36,7 +36,7 @@ export default {
 	<Projects404 v-if="this.is404" />
 	<template v-else-if="project">
 		<div class="container mb-5">
-			<h2 class="card-title fw-bold mb-5 text-center">
+			<h2 class="card-title fw-bold mb-5 mt-4 text-center">
 				Project title:
 				<span class="fst-italic fw-normal text-uppercase">
 					"{{ project.title }}"</span

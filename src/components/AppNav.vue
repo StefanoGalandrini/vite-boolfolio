@@ -2,8 +2,16 @@
 export default {
 	data() {
 		return {
-			$searchString: "",
+			searchString: "",
 		};
+	},
+
+	watch: {
+		$route(to, from) {
+			if (to.name !== from.name) {
+				this.searchString = "";
+			}
+		},
 	},
 
 	// updated() {
@@ -13,7 +21,7 @@ export default {
 </script>
 
 <template>
-	<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+	<nav class="navbar navbar-expand-lg navbar-light bg-dark px-5">
 		<div class="container-fluid">
 			<router-link class="navbar-brand text-light" :to="{name: 'home'}"
 				>Boolpress</router-link
@@ -52,13 +60,14 @@ export default {
 					class="d-flex"
 					role="search"
 					@submit.prevent="
-						$router.push({name: 'projects.index', query: {q: searchString}})
+						$router.push({name: 'projects', query: {q: searchString}})
 					">
 					<input
 						class="form-control me-2"
 						type="search"
 						placeholder="Search"
 						name="q"
+						v-model="searchString"
 						aria-label="Search" />
 					<button class="btn btn-outline-success" type="submit">Search</button>
 				</form>
