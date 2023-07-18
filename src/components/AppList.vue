@@ -13,9 +13,13 @@ export default {
 	data() {
 		return {
 			arrProjects: [],
+			arrTypes: [],
+			arrTechnologies: [],
 			activePage: 1,
 			nPages: 0,
 			store,
+			selectedType: null,
+			selectedTechnology: null,
 		};
 	},
 
@@ -39,6 +43,18 @@ export default {
 				});
 		},
 
+		getTypes() {
+			axios.get(this.store.fixedUrl + "api/types").then((response) => {
+				this.arrTypes = response.data.results;
+			});
+		},
+
+		getTechnologies() {
+			axios.get(this.store.fixedUrl + "api/technologies").then((response) => {
+				this.arrTechnologies = response.data.results;
+			});
+		},
+
 		toPrevPage() {
 			this.activePage != 1 ? this.activePage-- : null;
 		},
@@ -60,19 +76,64 @@ export default {
 
 	created() {
 		this.getProjects();
+		this.getTypes();
+		this.getTechnologies();
 	},
 };
 </script>
 
 <template>
-	<div
-		class="row row-cols-1 row-cols-sm-2 row-cols-md-4 row-cols-xl-6 g-4 my-3 px-5">
+	<div class="d-flex">
+		<form class="ms-5">
+			<h4>Select Types</h4>
+			<div class="d-flex align-items-center">
+				<label for="type">Type</label>
+				<select
+					id="type"
+					class="form-select w-75 ms-2"
+					v-model="selectedType"
+					@change="
+						$router.push({name: 'projects', query: {type: selectedType}})
+					">
+					<option v-for="type in arrTypes" :key="type.id" :value="type.id">
+						{{ type.name }}
+					</option>
+				</select>
+			</div>
+		</form>
+
+		<form class="ms-5">
+			<h4>Select Tecnologies</h4>
+			<div class="d-flex align-items-center">
+				<label for="type">Tecnology</label>
+				<select
+					id="technology"
+					class="form-select w-75 ms-2"
+					v-model="selectedTechnology"
+					@change="
+						$router.push({
+							name: 'projects',
+							query: {technology: selectedTechnology},
+						})
+					">
+					<option
+						v-for="technology in arrTechnologies"
+						:key="technology.id"
+						:value="technology.id">
+						{{ technology.name }}
+					</option>
+				</select>
+			</div>
+		</form>
+	</div>
+
+	<div class="row row-cols-6 g-4 my-0 px-5">
 		<div class="col" v-for="project in arrProjects" :key="project.id">
 			<AppCard :project="project" />
 		</div>
 	</div>
 
-	<div class="d-flex justify-content-end me-5">
+	<div class="d-flex justify-content-end me-5 mt-3">
 		<AppPaginator
 			:n-pages="nPages"
 			:active-page="activePage"

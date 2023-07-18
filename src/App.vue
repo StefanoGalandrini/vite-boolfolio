@@ -36,19 +36,14 @@ export default {
 @import "bootstrap/scss/bootstrap";
 
 .header {
-	max-height: 8vh;
+	height: 8vh;
 }
 
 .main {
-	max-height: 80vh;
+	height: 84vh;
 }
 
 .footer {
-	height: 12vh;
-}
-
-.main-app {
-	height: 80vh;
-	overflow: scroll;
+	height: 8vh;
 }
 </style>
