@@ -36,7 +36,7 @@ export default {
 @import "bootstrap/scss/bootstrap";
 
 .main-app {
-	height: 100%;
+	height: 80vh;
 	overflow: scroll;
 }
 </style>
