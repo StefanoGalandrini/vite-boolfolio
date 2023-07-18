@@ -30,7 +30,7 @@ export default {
 				.get(this.store.fixedUrl + "api/projects", {
 					params: {
 						page: this.activePage,
-						// q: new URLSearchParams(window.location.search).get("q"),
+						q: new URLSearchParams(window.location.search).get("q"),
 					},
 				})
 				.then((response) => {
@@ -49,6 +49,10 @@ export default {
 	},
 
 	watch: {
+		"$route.query.q": function (newVal, oldVal) {
+			this.getProjects();
+		},
+
 		currentPage() {
 			this.getProjects();
 		},
