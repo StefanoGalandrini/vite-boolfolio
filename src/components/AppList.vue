@@ -90,13 +90,16 @@ export default {
 				<label for="type">Type</label>
 				<select
 					id="type"
-					class="form-select w-75 ms-2"
+					class="form-select ms-2"
 					v-model="selectedType"
 					@change="
 						$router.push({name: 'projects', query: {type: selectedType}})
 					">
-					<option v-for="type in arrTypes" :key="type.id" :value="type.id">
-						{{ type.name }}
+					<option
+						v-for="prtype in arrTypes"
+						:key="prtype.id"
+						:value="prtype.id">
+						{{ prtype.name }}
 					</option>
 				</select>
 			</div>
@@ -108,7 +111,7 @@ export default {
 				<label for="type">Tecnology</label>
 				<select
 					id="technology"
-					class="form-select w-75 ms-2"
+					class="form-select ms-2"
 					v-model="selectedTechnology"
 					@change="
 						$router.push({
@@ -163,5 +166,9 @@ export default {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
+
+select {
+	width: 20ch !important;
 }
 </style>

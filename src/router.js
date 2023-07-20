@@ -1,4 +1,4 @@
-import {createRouter, createWebHistory} from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 
 // importare i componenti che definiscono le varie pagine
 import ProjectsHome from './pages/ProjectsHome.vue';
@@ -6,6 +6,7 @@ import ProjectsIndex from './pages/ProjectsIndex.vue';
 import ProjectsShow from './pages/ProjectsShow.vue';
 import ProjectsAbout from './pages/ProjectsAbout.vue';
 import Projects404 from './pages/Projects404.vue';
+import Contacts from './pages/Contacts.vue';
 
 const router = createRouter({
 	history: createWebHistory(),
@@ -19,6 +20,11 @@ const router = createRouter({
 			path: '/about',
 			name: 'about',
 			component: ProjectsAbout,
+		},
+		{
+			path: '/contact',
+			name: 'contact',
+			component: Contacts,
 		},
 		{
 			path: '/projects',
@@ -39,4 +45,4 @@ const router = createRouter({
 });
 
 export
-{router};
+{ router };
