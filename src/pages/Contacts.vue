@@ -14,7 +14,6 @@ export default {
 			isSending: false,
 			showError: false,
 			errors: {},
-			// TODO: mostrare gli errori per ciascun input
 		};
 	},
 	methods: {
@@ -89,9 +88,9 @@ export default {
 				id="name"
 				v-model="name" />
 			<div class="invalid-feedback">
-				<p v-for="errorMessage in errors.name" :key="errorMessage">
-					{{ errorMessage }}
-				</p>
+				<template v-for="errorMessage in errors.name" :key="errorMessage">
+					{{ errorMessage }}<br />
+				</template>
 			</div>
 		</div>
 
@@ -142,8 +141,14 @@ export default {
 			</div>
 		</div>
 
-		<button type="submit" class="btn btn-primary" :disabled="isSending">
+		<!-- Button with Spinner -->
+		<button type="submit" class="btn btn-info btn-lg" :disabled="isSending">
 			Submit
+			<span
+				v-if="isSending"
+				class="spinner-border spinner-border-sm"
+				role="status"
+				aria-hidden="true"></span>
 		</button>
 	</form>
 </template>
