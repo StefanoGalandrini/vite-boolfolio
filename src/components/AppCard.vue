@@ -28,6 +28,7 @@ export default {
 					:src="store.userImageUrl(project.image)"
 					alt=""
 					class="mx-2 w-50 my-2" />
+				<p class="card-text description mx-2">{{ project.type.name }}</p>
 				<p class="card-text description mx-2">{{ project.description }}</p>
 			</div>
 			<router-link

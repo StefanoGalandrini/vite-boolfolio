@@ -1,9 +1,34 @@
 <script>
+import {store} from "../store";
+
 export default {
 	data() {
 		return {
 			searchString: "",
+			store,
 		};
+	},
+
+	methods: {
+		executeSearch() {
+			this.store.search = this.searchString;
+			this.$router.push({
+				name: "project.index",
+				query: {q: this.searchString},
+			});
+		},
+
+		clearSearch() {
+			this.$router.push({query: {...this.$route.query, q: null}});
+		},
+
+		resetProjectView() {
+			this.$router.push({name: "projects", query: {}});
+		},
+	},
+
+	created() {
+		this.clearSearch();
 	},
 
 	watch: {
@@ -13,10 +38,6 @@ export default {
 			}
 		},
 	},
-
-	// updated() {
-	// 	this.searchString = new URLSearchParams(window.location.search).get("q");
-	// },
 };
 </script>
 
@@ -43,7 +64,8 @@ export default {
 					<li class="nav-item">
 						<router-link
 							class="nav-link active text-light"
-							:to="{name: 'projects'}">
+							:to="{name: 'projects'}"
+							@click="resetProjectView">
 							Projects
 						</router-link>
 					</li>
@@ -64,19 +86,14 @@ export default {
 						>
 					</li>
 				</ul>
-				<form
-					class="d-flex"
-					role="search"
-					@submit.prevent="
-						$router.push({name: 'projects', query: {q: searchString}})
-					">
+				<form class="d-flex" role="search" @submit.prevent="executeSearch">
 					<input
 						class="form-control me-2"
 						type="search"
 						placeholder="Search"
+						aria-label="Search"
 						name="q"
-						v-model="searchString"
-						aria-label="Search" />
+						v-model="searchString" />
 					<button class="btn btn-outline-success" type="submit">Search</button>
 				</form>
 			</div>

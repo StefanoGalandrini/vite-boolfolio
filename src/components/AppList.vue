@@ -2,12 +2,14 @@
 import axios from "axios";
 import AppPaginator from "./AppPaginator.vue";
 import AppCard from "./AppCard.vue";
+import AppFilter from "./AppFilter.vue";
 import {store} from "../store";
 
 export default {
 	components: {
 		AppPaginator,
 		AppCard,
+		AppFilter,
 	},
 
 	data() {
@@ -15,11 +17,11 @@ export default {
 			arrProjects: [],
 			arrTypes: [],
 			arrTechnologies: [],
+			typeId: null,
+			technologyId: null,
 			activePage: 1,
 			nPages: 0,
 			store,
-			selectedType: null,
-			selectedTechnology: null,
 		};
 	},
 
@@ -34,7 +36,9 @@ export default {
 				.get(this.store.fixedUrl + "api/projects", {
 					params: {
 						page: this.activePage,
-						q: new URLSearchParams(window.location.search).get("q"),
+						q: this.store.search,
+						type: this.typeId,
+						technology: this.technologyId,
 					},
 				})
 				.then((response) => {
@@ -55,6 +59,16 @@ export default {
 			});
 		},
 
+		manageChangeType(typeId) {
+			this.typeId = typeId;
+			this.getProjects();
+		},
+
+		manageChangeTechnology(technologyId) {
+			this.technologyId = technologyId;
+			this.getProjects();
+		},
+
 		toPrevPage() {
 			this.activePage != 1 ? this.activePage-- : null;
 		},
@@ -65,11 +79,11 @@ export default {
 	},
 
 	watch: {
-		"$route.query.q": function () {
+		currentPage() {
 			this.getProjects();
 		},
 
-		currentPage() {
+		"store.search"() {
 			this.getProjects();
 		},
 	},
@@ -83,52 +97,11 @@ export default {
 </script>
 
 <template>
-	<div class="d-flex">
-		<form class="ms-5">
-			<h4>Select Types</h4>
-			<div class="d-flex align-items-center">
-				<label for="type">Type</label>
-				<select
-					id="type"
-					class="form-select ms-2"
-					v-model="selectedType"
-					@change="
-						$router.push({name: 'projects', query: {type: selectedType}})
-					">
-					<option
-						v-for="prtype in arrTypes"
-						:key="prtype.id"
-						:value="prtype.id">
-						{{ prtype.name }}
-					</option>
-				</select>
-			</div>
-		</form>
-
-		<form class="ms-5">
-			<h4>Select Tecnologies</h4>
-			<div class="d-flex align-items-center">
-				<label for="type">Tecnology</label>
-				<select
-					id="technology"
-					class="form-select ms-2"
-					v-model="selectedTechnology"
-					@change="
-						$router.push({
-							name: 'projects',
-							query: {technology: selectedTechnology},
-						})
-					">
-					<option
-						v-for="technology in arrTechnologies"
-						:key="technology.id"
-						:value="technology.id">
-						{{ technology.name }}
-					</option>
-				</select>
-			</div>
-		</form>
-	</div>
+	<AppFilter
+		:arrTypes="arrTypes"
+		:arrTechnologies="arrTechnologies"
+		@changeType="manageChangeType($event)"
+		@changeTechnology="manageChangeTechnology($event)" />
 
 	<div class="row row-cols-6 g-4 my-0 px-5">
 		<div class="col" v-for="project in arrProjects" :key="project.id">
