@@ -43,6 +43,7 @@ export default {
 					class="form-select ms-2"
 					@change="$emit('changeType', typeId)"
 					v-model="typeId">
+					<option value="">Tutti</option>
 					<option
 						v-for="prtype in arrTypes"
 						:key="prtype.id"
@@ -62,6 +63,7 @@ export default {
 					class="form-select ms-2"
 					@change="$emit('changeTechnology', technologyId)"
 					v-model="technologyId">
+					<option value="">Tutti</option>
 					<option
 						v-for="technology in arrTechnologies"
 						:key="technology.id"

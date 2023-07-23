@@ -19,10 +19,12 @@ export default {
 		},
 
 		clearSearch() {
+			this.store.search = null;
 			this.$router.push({query: {...this.$route.query, q: null}});
 		},
 
 		resetProjectView() {
+			this.store.search = null;
 			this.$router.push({name: "projects", query: {}});
 		},
 	},
@@ -32,10 +34,9 @@ export default {
 	},
 
 	watch: {
-		$route(to, from) {
-			if (to.name !== from.name) {
-				this.searchString = "";
-			}
+		$route() {
+			this.searchString = "";
+			this.store.search = null;
 		},
 	},
 };
